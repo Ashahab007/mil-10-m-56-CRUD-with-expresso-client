@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 
 const AddCoffee = () => {
   // 5.0 my requirement is create a coffee data and send to the server by post method
@@ -22,7 +23,19 @@ const AddCoffee = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("after adding coffee to db", data);
-      }); // as we have not connected fully with backend but in this step fill the form and see the data in server terminal
+        // as we have not connected fully with backend but in this step fill the form and see the data in server terminal
+        if (data.insertedId) {
+          //this insertedId is found in console during adding coffee in db
+
+          // 6.0 now requirement is adding sweet alert during added coffee to db. so added coffee using form
+          Swal.fire({
+            title: "Coffee Added Successfully",
+            icon: "success",
+            draggable: true,
+          });
+          // form.reset();
+        }
+      });
   };
 
   //   5.1 created a form
@@ -78,12 +91,12 @@ const AddCoffee = () => {
             />
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
-            <label className="label">Category</label>
+            <label className="label">Price</label>
             <input
               type="text"
               className="input w-full"
-              placeholder="Enter Coffee Category"
-              name="category"
+              placeholder="Enter Coffee Price"
+              name="price"
             />
           </fieldset>
           <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-full border p-4">
