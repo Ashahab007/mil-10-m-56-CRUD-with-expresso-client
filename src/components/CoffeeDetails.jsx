@@ -5,7 +5,7 @@ const CoffeeDetails = () => {
   // 9.2 now we get the data of specific coffee. Detail show of this coffee will be design later.
   const coffee = useLoaderData();
   console.log(coffee);
-  return <div></div>;
+  return <div>Details page will be design later</div>;
 };
 
 export default CoffeeDetails;

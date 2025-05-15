@@ -2,7 +2,8 @@ import React from "react";
 import { data, Link } from "react-router";
 import Swal from "sweetalert2";
 
-const CoffeeCard = ({ coffee }) => {
+// 11.2 receive the coffees and setCoffees
+const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
   // 8.0 my requirement is delete coffee items upon delete showing with sweet alert with double confirm.
   const { _id, photoURL, price, Quantity, name } = coffee;
 
@@ -35,6 +36,11 @@ const CoffeeCard = ({ coffee }) => {
                 icon: "success",
               });
             }
+            // 11.3 filter the coffees and set the remaining coffee
+            const remainingCoffees = coffees.filter(
+              (coffee) => coffee._id !== _id
+            );
+            setCoffees(remainingCoffees);
           });
       }
     });
