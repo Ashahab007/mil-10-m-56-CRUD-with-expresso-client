@@ -7,6 +7,7 @@ import MainLayout from "./components/layouts/MainLayout";
 import Home from "./components/Home";
 import UpdateCoffee from "./components/UpdateCoffee";
 import AddCoffee from "./components/AddCoffee";
+import CoffeeDetails from "./components/CoffeeDetails";
 
 // 5.0 now created the component AddCoffee, UpdateCoffee, Home and set the layout
 
@@ -22,7 +23,20 @@ const router = createBrowserRouter([
         Component: Home,
       },
       { path: "/addcoffee", Component: AddCoffee },
-      { path: "/updatecoffee", Component: UpdateCoffee },
+      // 9.1 created a route and simultaneously created component CoffeeDetails. then load the data using loader and pass the params and get the specific coffee
+      {
+        path: "/coffee/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/coffees/${params.id}`),
+        Component: CoffeeDetails,
+      },
+      // 10.0 My requirement is update the specific coffee. to take the specicfic item we use id dynamically simultaneously created the UpdateCoffee component and load the backend coffee data by dynamic id
+      {
+        path: "/updatecoffee/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/coffees/${params.id}`),
+        Component: UpdateCoffee,
+      },
     ],
   },
 ]);
