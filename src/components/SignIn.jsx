@@ -2,6 +2,9 @@ import React from "react";
 import { Link } from "react-router";
 
 const SignIn = () => {
+  const handleSignIn = (e) => {
+    e.preventDefault();
+  };
   return (
     <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-50 mx-auto shadow-2xl">
       <div className="mb-8 text-center">
@@ -10,7 +13,12 @@ const SignIn = () => {
           Sign in to access your account
         </p>
       </div>
-      <form noValidate="" action="" className="space-y-12">
+      <form
+        onSubmit={handleSignIn}
+        noValidate=""
+        action=""
+        className="space-y-12"
+      >
         <div className="space-y-4">
           <div>
             <label htmlFor="email" className="block mb-2 text-sm">
@@ -49,7 +57,7 @@ const SignIn = () => {
         <div className="space-y-2">
           <div>
             <button
-              type="button"
+              type="submit"
               className="w-full px-8 py-3 font-semibold rounded-md bg-violet-600 text-white"
             >
               Sign in
