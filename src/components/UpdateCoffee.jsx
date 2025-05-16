@@ -18,13 +18,16 @@ const UpdateCoffee = () => {
     console.log(updatedCoffee); //now see in console the updated data
 
     // 10.5 send data to the db
-    fetch(`http://localhost:3000/coffees/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(updatedCoffee),
-    })
+    fetch(
+      `https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/coffees/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updatedCoffee),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

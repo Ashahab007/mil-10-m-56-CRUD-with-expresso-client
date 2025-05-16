@@ -24,7 +24,10 @@ const router = createBrowserRouter([
       {
         index: true,
         // 7.1 fetching the data as we are going to show the data in Home page
-        loader: () => fetch("http://localhost:3000/coffees"),
+        loader: () =>
+          fetch(
+            "https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/coffees"
+          ),
         Component: Home,
       },
       { path: "/addcoffee", Component: AddCoffee },
@@ -32,14 +35,18 @@ const router = createBrowserRouter([
       {
         path: "/coffee/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/coffees/${params.id}`),
+          fetch(
+            `https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/coffees/${params.id}`
+          ),
         Component: CoffeeDetails,
       },
       // 10.0 My requirement is update the specific coffee. to take the specicfic item we use id dynamically simultaneously created the UpdateCoffee component and load the backend coffee data by dynamic id
       {
         path: "/updatecoffee/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/coffees/${params.id}`),
+          fetch(
+            `https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/coffees/${params.id}`
+          ),
         Component: UpdateCoffee,
       },
       {
@@ -53,7 +60,10 @@ const router = createBrowserRouter([
       // 14.1 created a route for Users component
       {
         path: "/users",
-        loader: () => fetch("http://localhost:3000/users"),
+        loader: () =>
+          fetch(
+            "https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/users"
+          ),
         Component: Users,
       },
     ],

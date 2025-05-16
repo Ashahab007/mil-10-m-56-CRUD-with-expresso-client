@@ -18,3 +18,42 @@
  * after that u will get the hosting url
  * Now we have to deploy our server side in another host
  */
+
+// 18.0 deploy server in vercel
+/**
+ * go to vercel express deploy
+ * run 'npm i -g vercel' in server. (first time in ur PC)
+ *  run 'vercel login'
+ * from doc instead of  "vercel dev", we use "vercel --prod"
+ * "Link to existing project?" answer is no
+ * create a vercel.json file and copy the following code 
+ * {
+    "version": 2,
+    "builds": [
+        {
+            "src": "./index.js",
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/",
+            "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+        }
+    ]
+}
+ * now ctrl + c to cancel then start with "vercel --prod" (if u change anything start with "vercel --prod")
+ * now go vercel website => in profile icon Dashboard => now click the server
+ * now go to settings => environment => add environment variables
+ * use ur DB_USER as key and value cofee_monster
+ * then press add another and add the password
+ * now redeploy
+ * now to check after a minutes 'https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/coffees' u will get the data. same as users.
+ * now go to the client to replace all the "http://localhost:3000/" with "https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/ using ctrl + shift + f then click the below arrow button on left, then replace all button on right.
+ * in every change in client side run "npm run build"
+ * then "firebase deploy"
+
+
+
+ */

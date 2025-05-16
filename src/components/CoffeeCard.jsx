@@ -22,9 +22,12 @@ const CoffeeCard = ({ coffee, coffees, setCoffees }) => {
       console.log(result.isConfirmed);
       if (result.isConfirmed) {
         // 8.5 creating client side fetch to send the id to server. As we are going to use the id to delete so we need dynamic id
-        fetch(`http://localhost:3000/coffees/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/coffees/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log("After delete", data);

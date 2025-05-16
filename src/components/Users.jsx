@@ -25,9 +25,12 @@ const Users = () => {
       if (result.isConfirmed) {
         console.log(result.isConfirmed);
         // 15.5 fetching the users data by id from db after user confirms
-        fetch(`http://localhost:3000/users/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/users/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data); //{acknowledged: true, deletedCount: 1}

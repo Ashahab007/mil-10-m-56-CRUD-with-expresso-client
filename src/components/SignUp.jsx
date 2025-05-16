@@ -43,13 +43,16 @@ const SignUp = () => {
 
         //save data to the db
         // 13.5 save data to the db
-        fetch("http://localhost:3000/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userProfile),
-        })
+        fetch(
+          "https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/users",
+          {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userProfile),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log("after profile save", data);

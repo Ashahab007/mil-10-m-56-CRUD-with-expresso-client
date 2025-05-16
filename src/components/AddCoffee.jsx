@@ -13,13 +13,16 @@ const AddCoffee = () => {
     console.log(newCoffee);
 
     // 5.6 Send coffee data to the db, the url will be backend url localhost:3000 and all the coffee data will be saved in file we create in 5.5 '/coffees'
-    fetch("http://localhost:3000/coffees", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newCoffee),
-    })
+    fetch(
+      "https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/coffees",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newCoffee),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log("after adding coffee to db", data);

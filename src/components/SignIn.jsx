@@ -32,13 +32,16 @@ const SignIn = () => {
         };
 
         // 16.7 send the data to the backend
-        fetch("http://localhost:3000/users", {
-          method: "PATCH",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(userSignInInfo),
-        })
+        fetch(
+          "https://mil-10-m-56-crud-with-expresso-mongodb-server.vercel.app/users",
+          {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(userSignInInfo),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log("after update patch", data);
