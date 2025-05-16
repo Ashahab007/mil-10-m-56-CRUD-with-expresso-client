@@ -1,9 +1,54 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { use } from "react";
+import { data, Link } from "react-router";
+import AuthContext from "../context/AuthContext";
 
 const SignIn = () => {
+  // 16.0 my requirement is update the user login time after login. Note: As previously we have used PUT method to update whole data. for updating one or two data we will use patch method.
+
+  //   16.3 receive  the signInUser and directly destructure it
+  const { signInUser } = use(AuthContext);
   const handleSignIn = (e) => {
     e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+    // 16.4  call the signInUser
+    signInUser(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user); /* metadata: UserMetadata 
+        createdAt : "1747402278145" 
+        creationTime : "Fri, 16 May 2025 13:31:18 GMT" 
+        lastLoginAt : "1747410265533"
+        lastSignInTime : "Fri, 16 May 2025 15:44:25 GMT" */
+
+        // 16.6 make an object because we will find the logged in user by email and update the user lastSignInTime
+        const userSignInInfo = {
+          email,
+          lastSignInTime: user.metadata?.lastSignInTime,
+        };
+
+        // 16.7 send the data to the backend
+        fetch("http://localhost:3000/users", {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userSignInInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log("after update patch", data);
+          });
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
   return (
     <div className="flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-50 mx-auto shadow-2xl">
